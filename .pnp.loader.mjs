@@ -1,9 +1,9 @@
-import { URL as URL$1, fileURLToPath, pathToFileURL } from 'url';
-import fs from 'fs';
-import path from 'path';
-import moduleExports, { Module } from 'module';
-import { EOL } from 'os';
-import assert from 'assert';
+import { URL as URL$1, fileURLToPath, pathToFileURL } from "url";
+import fs from "fs";
+import path from "path";
+import moduleExports, { Module } from "module";
+import { EOL } from "os";
+import assert from "assert";
 
 const SAFE_TIME = 456789e3;
 
@@ -248,7 +248,7 @@ const isCloneSupportedCache = /* @__PURE__ */ new WeakMap();
 function makeLinkOperation(opFs, destination, source, sourceStat, linkStrategy) {
   return async () => {
     await opFs.linkPromise(source, destination);
-    if (linkStrategy === 'readOnly' /* ReadOnly */) {
+    if (linkStrategy === "readOnly" /* ReadOnly */) {
       sourceStat.mode &= ~146;
       await opFs.chmodPromise(destination, sourceStat.mode);
     }
@@ -1550,7 +1550,7 @@ async function load$1(urlString, context, nextLoad) {
   }
   if (process.env.WATCH_REPORT_DEPENDENCIES && process.send) {
     process.send({
-      'watch:import': pathToFileURL(npath.fromPortablePath(VirtualFS.resolveVirtual(npath.toPortablePath(filePath))))
+      "watch:import": pathToFileURL(npath.fromPortablePath(VirtualFS.resolveVirtual(npath.toPortablePath(filePath))))
         .href,
     });
   }
@@ -1655,7 +1655,7 @@ function getPackageConfig(path, specifier, base, readFileSyncFn) {
       exists: false,
       main: void 0,
       name: void 0,
-      type: 'none',
+      type: "none",
       exports: void 0,
       imports: void 0,
     };
@@ -1668,23 +1668,23 @@ function getPackageConfig(path, specifier, base, readFileSyncFn) {
   } catch (error) {
     throw new ERR_INVALID_PACKAGE_CONFIG(
       path,
-      (base ? `"${specifier}" from ` : '') + fileURLToPath(base || specifier),
+      (base ? `"${specifier}" from ` : "") + fileURLToPath(base || specifier),
       error.message,
     );
   }
-  let { imports, main, name, type } = filterOwnProperties(packageJSON, ['imports', 'main', 'name', 'type']);
-  const exports = ObjectPrototypeHasOwnProperty(packageJSON, 'exports') ? packageJSON.exports : void 0;
-  if (typeof imports !== 'object' || imports === null) {
+  let { imports, main, name, type } = filterOwnProperties(packageJSON, ["imports", "main", "name", "type"]);
+  const exports = ObjectPrototypeHasOwnProperty(packageJSON, "exports") ? packageJSON.exports : void 0;
+  if (typeof imports !== "object" || imports === null) {
     imports = void 0;
   }
-  if (typeof main !== 'string') {
+  if (typeof main !== "string") {
     main = void 0;
   }
-  if (typeof name !== 'string') {
+  if (typeof name !== "string") {
     name = void 0;
   }
-  if (type !== 'module' && type !== 'commonjs') {
-    type = 'none';
+  if (type !== "module" && type !== "commonjs") {
+    type = "none";
   }
   const packageConfig = {
     pjsonPath: path,
@@ -1699,10 +1699,10 @@ function getPackageConfig(path, specifier, base, readFileSyncFn) {
   return packageConfig;
 }
 function getPackageScopeConfig(resolved, readFileSyncFn) {
-  let packageJSONUrl = new URL('./package.json', resolved);
+  let packageJSONUrl = new URL("./package.json", resolved);
   while (true) {
     const packageJSONPath2 = packageJSONUrl.pathname;
-    if (StringPrototypeEndsWith(packageJSONPath2, 'node_modules/package.json')) {
+    if (StringPrototypeEndsWith(packageJSONPath2, "node_modules/package.json")) {
       break;
     }
     const packageConfig2 = getPackageConfig(fileURLToPath(packageJSONUrl), resolved, void 0, readFileSyncFn);
@@ -1710,7 +1710,7 @@ function getPackageScopeConfig(resolved, readFileSyncFn) {
       return packageConfig2;
     }
     const lastPackageJSONUrl = packageJSONUrl;
-    packageJSONUrl = new URL('../package.json', packageJSONUrl);
+    packageJSONUrl = new URL("../package.json", packageJSONUrl);
     if (packageJSONUrl.pathname === lastPackageJSONUrl.pathname) {
       break;
     }
@@ -1721,7 +1721,7 @@ function getPackageScopeConfig(resolved, readFileSyncFn) {
     exists: false,
     main: void 0,
     name: void 0,
-    type: 'none',
+    type: "none",
     exports: void 0,
     imports: void 0,
   };
@@ -1754,24 +1754,24 @@ function getPackageScopeConfig(resolved, readFileSyncFn) {
 function throwImportNotDefined(specifier, packageJSONUrl, base) {
   throw new ERR_PACKAGE_IMPORT_NOT_DEFINED(
     specifier,
-    packageJSONUrl && fileURLToPath(new URL('.', packageJSONUrl)),
+    packageJSONUrl && fileURLToPath(new URL(".", packageJSONUrl)),
     fileURLToPath(base),
   );
 }
 function throwInvalidSubpath(subpath, packageJSONUrl, internal, base) {
   const reason = `request is not a valid subpath for the "${
-    internal ? 'imports' : 'exports'
+    internal ? "imports" : "exports"
   }" resolution of ${fileURLToPath(packageJSONUrl)}`;
   throw new ERR_INVALID_MODULE_SPECIFIER(subpath, reason, base && fileURLToPath(base));
 }
 function throwInvalidPackageTarget(subpath, target, packageJSONUrl, internal, base) {
-  if (typeof target === 'object' && target !== null) {
-    target = JSONStringify(target, null, '');
+  if (typeof target === "object" && target !== null) {
+    target = JSONStringify(target, null, "");
   } else {
     target = `${target}`;
   }
   throw new ERR_INVALID_PACKAGE_TARGET(
-    fileURLToPath(new URL('.', packageJSONUrl)),
+    fileURLToPath(new URL(".", packageJSONUrl)),
     subpath,
     target,
     internal,
@@ -1782,10 +1782,10 @@ const invalidSegmentRegEx =
   /(^|\\|\/)((\.|%2e)(\.|%2e)?|(n|%6e|%4e)(o|%6f|%4f)(d|%64|%44)(e|%65|%45)(_|%5f)(m|%6d|%4d)(o|%6f|%4f)(d|%64|%44)(u|%75|%55)(l|%6c|%4c)(e|%65|%45)(s|%73|%53))(\\|\/|$)/i;
 const patternRegEx = /\*/g;
 function resolvePackageTargetString(target, subpath, match, packageJSONUrl, base, pattern, internal, conditions) {
-  if (subpath !== '' && !pattern && target[target.length - 1] !== '/')
+  if (subpath !== "" && !pattern && target[target.length - 1] !== "/")
     throwInvalidPackageTarget(match, target, packageJSONUrl, internal, base);
-  if (!StringPrototypeStartsWith(target, './')) {
-    if (internal && !StringPrototypeStartsWith(target, '../') && !StringPrototypeStartsWith(target, '/')) {
+  if (!StringPrototypeStartsWith(target, "./")) {
+    if (internal && !StringPrototypeStartsWith(target, "../") && !StringPrototypeStartsWith(target, "/")) {
       let isURL = false;
       try {
         new URL(target);
@@ -1804,12 +1804,12 @@ function resolvePackageTargetString(target, subpath, match, packageJSONUrl, base
     throwInvalidPackageTarget(match, target, packageJSONUrl, internal, base);
   const resolved = new URL(target, packageJSONUrl);
   const resolvedPath = resolved.pathname;
-  const packagePath = new URL('.', packageJSONUrl).pathname;
+  const packagePath = new URL(".", packageJSONUrl).pathname;
   if (!StringPrototypeStartsWith(resolvedPath, packagePath))
     throwInvalidPackageTarget(match, target, packageJSONUrl, internal, base);
-  if (subpath === '') return resolved;
+  if (subpath === "") return resolved;
   if (RegExpPrototypeExec(invalidSegmentRegEx, subpath) !== null) {
-    const request = pattern ? StringPrototypeReplace(match, '*', () => subpath) : match + subpath;
+    const request = pattern ? StringPrototypeReplace(match, "*", () => subpath) : match + subpath;
     throwInvalidSubpath(request, packageJSONUrl, internal, base);
   }
   if (pattern) {
@@ -1823,7 +1823,7 @@ function isArrayIndex(key) {
   return keyNum >= 0 && keyNum < 4294967295;
 }
 function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, base, pattern, internal, conditions) {
-  if (typeof target === 'string') {
+  if (typeof target === "string") {
     return resolvePackageTargetString(target, subpath, packageSubpath, packageJSONUrl, base, pattern, internal);
   } else if (ArrayIsArray(target)) {
     if (target.length === 0) {
@@ -1846,7 +1846,7 @@ function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, b
         );
       } catch (e) {
         lastException = e;
-        if (e.code === 'ERR_INVALID_PACKAGE_TARGET') {
+        if (e.code === "ERR_INVALID_PACKAGE_TARGET") {
           continue;
         }
         throw e;
@@ -1862,7 +1862,7 @@ function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, b
     }
     if (lastException === void 0 || lastException === null) return lastException;
     throw lastException;
-  } else if (typeof target === 'object' && target !== null) {
+  } else if (typeof target === "object" && target !== null) {
     const keys = ObjectGetOwnPropertyNames(target);
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
@@ -1876,7 +1876,7 @@ function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, b
     }
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
-      if (key === 'default' || conditions.has(key)) {
+      if (key === "default" || conditions.has(key)) {
         const conditionalTarget = target[key];
         const resolveResult = resolvePackageTarget(
           packageJSONUrl,
@@ -1899,8 +1899,8 @@ function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, b
   throwInvalidPackageTarget(packageSubpath, target, packageJSONUrl, internal, base);
 }
 function patternKeyCompare(a, b) {
-  const aPatternIndex = StringPrototypeIndexOf(a, '*');
-  const bPatternIndex = StringPrototypeIndexOf(b, '*');
+  const aPatternIndex = StringPrototypeIndexOf(a, "*");
+  const bPatternIndex = StringPrototypeIndexOf(b, "*");
   const baseLenA = aPatternIndex === -1 ? a.length : aPatternIndex + 1;
   const baseLenB = bPatternIndex === -1 ? b.length : bPatternIndex + 1;
   if (baseLenA > baseLenB) return -1;
@@ -1912,8 +1912,8 @@ function patternKeyCompare(a, b) {
   return 0;
 }
 function packageImportsResolve({ name, base, conditions, readFileSyncFn }) {
-  if (name === '#' || StringPrototypeStartsWith(name, '#/') || StringPrototypeEndsWith(name, '/')) {
-    const reason = 'is not a valid internal imports specifier name';
+  if (name === "#" || StringPrototypeStartsWith(name, "#/") || StringPrototypeEndsWith(name, "/")) {
+    const reason = "is not a valid internal imports specifier name";
     throw new ERR_INVALID_MODULE_SPECIFIER(name, reason, fileURLToPath(base));
   }
   let packageJSONUrl;
@@ -1922,11 +1922,11 @@ function packageImportsResolve({ name, base, conditions, readFileSyncFn }) {
     packageJSONUrl = pathToFileURL(packageConfig.pjsonPath);
     const imports = packageConfig.imports;
     if (imports) {
-      if (ObjectPrototypeHasOwnProperty(imports, name) && !StringPrototypeIncludes(name, '*')) {
+      if (ObjectPrototypeHasOwnProperty(imports, name) && !StringPrototypeIncludes(name, "*")) {
         const resolveResult = resolvePackageTarget(
           packageJSONUrl,
           imports[name],
-          '',
+          "",
           name,
           base,
           false,
@@ -1937,19 +1937,19 @@ function packageImportsResolve({ name, base, conditions, readFileSyncFn }) {
           return resolveResult;
         }
       } else {
-        let bestMatch = '';
+        let bestMatch = "";
         let bestMatchSubpath;
         const keys = ObjectGetOwnPropertyNames(imports);
         for (let i = 0; i < keys.length; i++) {
           const key = keys[i];
-          const patternIndex = StringPrototypeIndexOf(key, '*');
+          const patternIndex = StringPrototypeIndexOf(key, "*");
           if (patternIndex !== -1 && StringPrototypeStartsWith(name, StringPrototypeSlice(key, 0, patternIndex))) {
             const patternTrailer = StringPrototypeSlice(key, patternIndex + 1);
             if (
               name.length >= key.length &&
               StringPrototypeEndsWith(name, patternTrailer) &&
               patternKeyCompare(bestMatch, key) === 1 &&
-              StringPrototypeLastIndexOf(key, '*') === patternIndex
+              StringPrototypeLastIndexOf(key, "*") === patternIndex
             ) {
               bestMatch = key;
               bestMatchSubpath = StringPrototypeSlice(name, patternIndex, name.length - patternTrailer.length);

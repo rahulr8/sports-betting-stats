@@ -1,9 +1,9 @@
-import { Dialog } from '@headlessui/react';
-import { useRef, useState } from 'react';
-import { useAuthState } from '~/components/contexts/UserContext';
-import { SignInButton } from '~/components/domain/auth/SignInButton';
-import { SignOutButton } from '~/components/domain/auth/SignOutButton';
-import { Head } from '~/components/shared/Head';
+import { Dialog } from "@headlessui/react";
+import { useRef, useState } from "react";
+import { useAuthState } from "~/contexts/UserContext";
+import { SignInButton } from "~/components/domain/auth/SignInButton";
+import { SignOutButton } from "~/components/domain/auth/SignOutButton";
+import { Head } from "~/components/shared/Head";
 
 function Index() {
   const { state } = useAuthState();
@@ -19,23 +19,23 @@ function Index() {
             <h1 className="text-3xl font-bold">
               <a className="link link-primary" target="_blank" href="https://vitejs.dev/" rel="noreferrer">
                 Vite
-              </a>{' '}
-              +{' '}
+              </a>{" "}
+              +{" "}
               <a className="link link-primary" target="_blank" href="https://reactjs.org/" rel="noreferrer">
                 React
-              </a>{' '}
-              +{' '}
+              </a>{" "}
+              +{" "}
               <a className="link link-primary" target="_blank" href="https://www.typescriptlang.org/" rel="noreferrer">
                 TypeScript
-              </a>{' '}
-              +{' '}
+              </a>{" "}
+              +{" "}
               <a className="link link-primary" target="_blank" href="https://tailwindcss.com/" rel="noreferrer">
                 TailwindCSS
-              </a>{' '}
+              </a>{" "}
               Starter
             </h1>
             <p className="mt-4 text-lg">
-              For fast <b>prototyping</b>. Already set up{' '}
+              For fast <b>prototyping</b>. Already set up{" "}
               <a
                 className="link link-primary"
                 target="_blank"
@@ -44,15 +44,15 @@ function Index() {
               >
                 Firebase(v9)
               </a>
-              ,{' '}
+              ,{" "}
               <a className="link link-primary" target="_blank" href="https://daisyui.com/" rel="noreferrer">
                 daisyUI
               </a>
-              ,{' '}
+              ,{" "}
               <a className="link link-primary" target="_blank" href="https://github.com/eslint/eslint" rel="noreferrer">
                 ESLint
               </a>
-              ,{' '}
+              ,{" "}
               <a
                 className="link link-primary"
                 target="_blank"
@@ -64,7 +64,7 @@ function Index() {
               .
             </p>
             <div className="mt-4 grid gap-2">
-              {state.state === 'UNKNOWN' ? null : state.state === 'SIGNED_OUT' ? <SignInButton /> : <SignOutButton />}
+              {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? <SignInButton /> : <SignOutButton />}
               <button onClick={() => setIsOpen(true)}>Display Dialog</button>
             </div>
           </div>

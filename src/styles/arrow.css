@@ -7,7 +7,7 @@
 
 .arrow::after {
   position: absolute;
-  content: '';
+  content: "";
   display: block;
 }
 
