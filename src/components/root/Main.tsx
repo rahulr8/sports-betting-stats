@@ -1,7 +1,8 @@
-import { Router } from "components/router/Router";
-import { setupFirebase } from "lib/firebase";
 import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+import { Router } from "components/router/Router";
+import { setupFirebase } from "lib/firebase";
 import { useSignIn, useSignOut } from "contexts/UserContext";
 
 function Main() {

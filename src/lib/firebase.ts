@@ -34,9 +34,10 @@ export const useAuth = () => {
 };
 
 export const useFirestore = () => {
+  const emulator = useEmulator();
   if (!firestore) {
     firestore = getFirestore();
-    if (useEmulator()) {
+    if (emulator) {
       connectFirestoreEmulator(firestore, "localhost", 8080);
     }
   }
@@ -44,9 +45,10 @@ export const useFirestore = () => {
 };
 
 export const useStorage = () => {
+  const emulator = useEmulator();
   if (!storage) {
     storage = getStorage();
-    if (useEmulator()) {
+    if (emulator) {
       connectStorageEmulator(storage, "localhost", 9199);
     }
   }

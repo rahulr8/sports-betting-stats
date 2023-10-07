@@ -35,7 +35,7 @@ type AuthContextProps = {
   dispatch: (value: AuthActions) => void;
 };
 
-export const AuthContext = createContext<AuthContextProps>({ state: { state: "UNKNOWN" }, dispatch: (val) => {} });
+export const AuthContext = createContext<AuthContextProps>({ state: { state: "UNKNOWN" }, dispatch: () => null });
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(AuthReducer, { state: "UNKNOWN" });

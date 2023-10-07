@@ -1,4 +1,5 @@
 import { HelmetProvider } from "react-helmet-async";
+
 import { AuthProvider } from "contexts/UserContext";
 import Main from "components/root/Main";
 

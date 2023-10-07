@@ -1,5 +1,4 @@
-import { Dialog } from "@headlessui/react";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 import { Outlet, RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
 
 const Loading = () => <p className="p-4 w-full h-full text-center">Loading...</p>;
@@ -17,14 +16,6 @@ function Layout() {
     </div>
   );
 }
-
-export const Router = () => {
-  return (
-    <BrowserRouter>
-      <InnerRouter />
-    </BrowserRouter>
-  );
-};
 
 const InnerRouter = () => {
   const routes: RouteObject[] = [
@@ -48,5 +39,13 @@ const InnerRouter = () => {
     <div>
       <Suspense fallback={<Loading />}>{element}</Suspense>
     </div>
+  );
+};
+
+export const Router = () => {
+  return (
+    <BrowserRouter>
+      <InnerRouter />
+    </BrowserRouter>
   );
 };

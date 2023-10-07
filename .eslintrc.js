@@ -1,9 +1,5 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: ["plugin:react/recommended", "standard", "prettier"],
+  extends: ["airbnb-typescript-prettier", "plugin:import/recommended", "plugin:import/typescript", "prettier"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -12,28 +8,32 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
-  plugins: ["react", "@typescript-eslint"],
   rules: {
-    "react/prop-types": "off",
-    "react/jsx-curly-brace-presence": "error",
-    // React 17
-    "react/jsx-uses-react": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
-    "react/self-closing-comp": [
+    "no-nested-ternary": "off",
+    "import/order": [
       "error",
       {
-        component: true,
-        html: true,
+        "newlines-between": "always",
+        groups: ["external", ["internal", "parent", "sibling", "index"], "unknown"],
       },
     ],
-    "react/jsx-boolean-value": "error",
-    "prefer-template": "error",
-    "jsx-quotes": ["error", "prefer-double"],
-    "react/jsx-tag-spacing": "error",
+    "prettier/prettier": "error",
+    "default-case": "off",
+    "react-hooks/exhaustive-deps": "off",
+  },
+  plugins: ["prettier", "import"],
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+    },
+    "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true,
+        project: ["./tsconfig.json"],
+      },
+    },
   },
 };
