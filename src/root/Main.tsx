@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import { Router } from "Router";
