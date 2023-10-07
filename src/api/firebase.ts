@@ -17,6 +17,7 @@ export const setupFirebase = () => {
       appId: import.meta.env.VITE_FIREBASE_APPID,
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error({ error });
   }
 };

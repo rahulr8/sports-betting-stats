@@ -23,6 +23,7 @@ module.exports = {
     "prettier/prettier": "error",
     "default-case": "off",
     "react-hooks/exhaustive-deps": "off",
+    "react/require-default-props": ["error", { ignoreFunctionalComponents: true }],
   },
   plugins: ["prettier", "import"],
   settings: {

@@ -1,7 +1,7 @@
 import { HelmetProvider } from "react-helmet-async";
 
 import { AuthProvider } from "contexts/UserContext";
-import Main from "components/root/Main";
+import Main from "root/Main";
 
 export const App = () => {
   return (

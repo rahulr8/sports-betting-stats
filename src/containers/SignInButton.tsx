@@ -1,6 +1,6 @@
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
-import { useAuth } from "lib/firebase";
+import { useAuth } from "api/firebase";
 
 export const SignInButton = () => {
   const auth = useAuth();

@@ -1,4 +1,4 @@
-import { useAuth } from "lib/firebase";
+import { useAuth } from "api/firebase";
 
 export const SignOutButton = () => {
   const auth = useAuth();
