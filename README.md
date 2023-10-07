@@ -4,6 +4,8 @@
 
 To help people keep their hard earned income / daddy's $$$
 
+## Stack
+
 This codebase uses following libraries:
 
 - Vite
@@ -18,16 +20,21 @@ This codebase uses following libraries:
 
 ## Set up
 
+Best make sure your npm version is >8.0.0. You can test this by running
+
+```
+npm --version
+```
+
 ```shell
 mv .env.local.example .env.local
-yarn
-yarn dev
+npm install
+npm run dev
 ```
 
 ### Firebase
 
 - copy Firebase env values from Firebase Console, and paste them to `.env.local`.
-- enable Google Auth in Firebase Console. ref: https://firebase.google.com/docs/auth/web/google-signin#before_you_begin
 
 ## Vite
 
@@ -50,12 +57,4 @@ It prepares components CSS classes such as 'btn'. If you provide 'btn' class to 
 
 ## Formatter and Linter
 
-Already set up [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/). You can customize the rules.
-
-NOTICE: The template does not use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [prettier-eslint](https://github.com/prettier/prettier-eslint). So I recommend that running commands individually. e.g. `prettier && eslint`.
-
-Please read: https://prettier.io/docs/en/integrating-with-linters.html.
-
-# ToDo
-
-- [x] install and set up [TailwindCSS/JIT](https://github.com/tailwindlabs/tailwindcss-jit) see this [PR](https://github.com/TeXmeijin/vite-react-ts-tailwind-starter/pull/1)
+Uses Prettier and EsLint, so make sure you have these extensions enabled on your VSCode.
