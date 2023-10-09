@@ -165,6 +165,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
 const SidebarWithHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { teamName } = useParams<{ teamName: string }>();
+  console.log("You can use the team name here to highlight the team in the sidebar", teamName);
 
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
