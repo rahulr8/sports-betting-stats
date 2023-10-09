@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import { Router } from "Router";
 import { setupFirebase } from "api/firebase";
 import { useSignIn, useSignOut } from "contexts/UserContext";
+import { Router } from "Router";
 
 function Main() {
   const { signIn } = useSignIn();

@@ -1,16 +1,14 @@
-import React from "react";
+import { Button } from "@chakra-ui/react";
 
 import { useAuth } from "api/firebase";
 
-export const SignOutButton = () => {
+const SignOutButton = () => {
   const auth = useAuth();
   const handleClick = () => {
     auth.signOut();
   };
 
-  return (
-    <button onClick={handleClick} type="button" className="btn normal-case">
-      Sign Out
-    </button>
-  );
+  return <Button onClick={handleClick}>Sign Out</Button>;
 };
+
+export default SignOutButton;

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   IconButton,
   Box,
@@ -22,80 +21,73 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-  Link
-} from '@chakra-ui/react'
-import { useParams } from "react-router-dom";
-import {
-  FiMenu,
-  FiChevronDown,
-} from 'react-icons/fi'
-import { IconType } from 'react-icons'
-import { footballLeagues } from 'constants/leagues';
-import { Teams } from './Teams';
-import { SignInButton } from 'containers/SignInButton';
-import { useAuthState } from 'contexts/UserContext';
-import { SignOutButton } from 'containers/SignOutButton';
-import TeamHistory from 'containers/TeamHistory';
+  Link as ChakraLink,
+} from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
+import { FiMenu, FiChevronDown } from "react-icons/fi";
 
-interface NavItemProps extends FlexProps {
-  icon: IconType
-  children: React.ReactNode
-}
+import { footballLeagues } from "constants/leagues";
+import { Teams } from "./Teams";
+import { SignInButton } from "containers/SignInButton";
+import { useAuthState } from "contexts/UserContext";
+import SignOutButton from "containers/SignOutButton";
 
 interface MobileProps extends FlexProps {
-  onOpen: () => void
+  onOpen: () => void;
 }
 
 interface SidebarProps extends BoxProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+const SidebarContent = ({ onClose }: SidebarProps) => {
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       borderRight="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      w={{ base: 'full', md: 60 }}
+      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}>
+    >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Link href='/'>
+        <ChakraLink href="/">
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
             Bets
-        </Text>
-        </Link>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+          </Text>
+        </ChakraLink>
+        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {/* League sidebar Accordion */}
       <Accordion defaultIndex={[0]} allowMultiple>
-        {footballLeagues.map((league) => (
-          league.enabled && <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Flex >
-                  <img
-                    src={`https://flagcdn.com/${league.flagSVGcode}.svg`}
-                    width="30"
-                    alt="England" />
-                  <Text fontWeight={600} px={2}>{league.name} </Text>
-                </Flex>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              <Teams teams={league.teams} />
-            </AccordionPanel>
-          </AccordionItem>
-        ))}
+        {footballLeagues.map(
+          (league) =>
+            league.enabled && (
+              <AccordionItem key={league.name}>
+                <h2>
+                  <AccordionButton>
+                    <Flex>
+                      <img src={`https://flagcdn.com/${league.flagSVGcode}.svg`} width="30" alt="England" />
+                      <Text fontWeight={600} px={2}>
+                        {league.name}{" "}
+                      </Text>
+                    </Flex>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <Teams teams={league.teams} />
+                </AccordionPanel>
+              </AccordionItem>
+            ),
+        )}
       </Accordion>
     </Box>
-  )
-}
+  );
+};
 
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+const MobileNav = ({ onOpen }: MobileProps) => {
   const { state } = useAuthState();
   const { teamName } = useParams<{ teamName: string }>();
   return (
@@ -104,52 +96,57 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent={'space-between'}
-      {...rest}>
+      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      justifyContent="space-between"
+    >
       {/* menu btn for smaller screens */}
       <IconButton
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: "flex", md: "none" }}
         onClick={onOpen}
         variant="outline"
         aria-label="open menu"
         icon={<FiMenu />}
       />
-      <Flex display={{ base: 'none', md: 'flex' }} justifyContent='space-between' w={300}>
+      <Flex display={{ base: "none", md: "flex" }} justifyContent="space-between" w={300}>
         {/* replace link redirects to states holding teams */}
-        <Link href={`/team/${teamName || footballLeagues[0].teams[0].name}`} mr={5} fontWeight={600} fontSize='large'>
-          Team history
+        <Link to={`/team/${teamName || footballLeagues[0].teams[0].name}`}>
+          <Text mr={5} fontWeight={600} fontSize="large">
+            Team history
+          </Text>
         </Link>
-        <Link href={`/matchup/${teamName || footballLeagues[0].teams[0].name}&${footballLeagues[0].teams[1].name}`} fontWeight={600} fontSize='large'>
-          Matchup history
+        <Link
+          to={`/matchup?team1=${teamName || footballLeagues[0].teams[0].name}&team2=${
+            footballLeagues[0].teams[1].name
+          }`}
+        >
+          <Text fontWeight={600} fontSize="large">
+            Matchup history
+          </Text>
         </Link>
       </Flex>
       {/* replace with logo */}
-      <Link href='/'>
-        <Text
-          display={{ base: 'flex', md: 'none' }}
-          fontSize="2xl"
-          fontFamily="monospace"
-          fontWeight="bold">
+      <ChakraLink href="/">
+        <Text display={{ base: "flex", md: "none" }} fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Bets
-      </Text>
-      </Link>
-      <HStack spacing={{ base: '0', md: '6' }}>
-        <Flex alignItems={'center'}>
+        </Text>
+      </ChakraLink>
+      <HStack spacing={{ base: "0", md: "6" }}>
+        <Flex alignItems="center">
           <Menu>
-            <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
+            <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: "none" }}>
               <HStack>
                 {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? <SignInButton /> : <SignOutButton />}
-                <Box display={{ base: 'flex', md: 'none' }}>
+                <Box display={{ base: "flex", md: "none" }}>
                   <FiChevronDown />
                 </Box>
               </HStack>
             </MenuButton>
             <MenuList
-              bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
+              bg={useColorModeValue("white", "gray.900")}
+              borderColor={useColorModeValue("gray.200", "gray.700")}
+            >
               <MenuItem>Team History</MenuItem>
               <MenuDivider />
               <MenuItem>Team Matchup</MenuItem>
@@ -158,33 +155,31 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         </Flex>
       </HStack>
     </Flex>
-  )
-}
+  );
+};
 
 const SidebarWithHeader = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+    <Box w="full" bg={useColorModeValue("gray.100", "gray.900")}>
+      <SidebarContent onClose={() => onClose} display={{ base: "none", md: "block" }} />
       <Drawer
         isOpen={isOpen}
         placement="left"
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full">
+        size="full"
+      >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
+      {/* {/* mobilenav  */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        <TeamHistory />
-      </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default SidebarWithHeader
+export default SidebarWithHeader;

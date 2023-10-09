@@ -1,17 +1,12 @@
-import React from "react";
+import { Box, Button } from "@chakra-ui/react";
 
 function ErrorFallback() {
   return (
-    <div className="bg-white p-8 rounded shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Something went wrong</h2>
-      <button
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-        onClick={() => window.location.reload()}
-        type="button"
-      >
-        Try again
-      </button>
-    </div>
+    <Box>
+      <h1>Something went wrong.</h1>
+      <p>Try refreshing the page.</p>
+      <Button onClick={() => window.location.reload()}>Refresh</Button>
+    </Box>
   );
 }
 
