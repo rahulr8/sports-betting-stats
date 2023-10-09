@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useAuth } from "api/firebase";
 
 export const SignOutButton = () => {

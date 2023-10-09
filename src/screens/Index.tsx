@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useAuthState } from "contexts/UserContext";
 import { SignInButton } from "containers/SignInButton";
 import { SignOutButton } from "containers/SignOutButton";
@@ -5,7 +7,7 @@ import { Head } from "components/Head";
 
 function Index() {
   const { state } = useAuthState();
-
+// main page to be styled
   return (
     <>
       <Head title="TOP PAGE" />

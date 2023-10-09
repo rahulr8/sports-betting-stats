@@ -1,5 +1,9 @@
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Outlet, RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
+
+import Sidebar from "components/Sidebar";
+import TeamHistory from "containers/TeamHistory";
+import SidebarWithHeader from "components/Sidebar";
 
 const Loading = () => <p className="p-4 w-full h-full text-center">Loading...</p>;
 
@@ -9,9 +13,7 @@ const Page404Screen = lazy(() => import("screens/404"));
 function Layout() {
   return (
     <div>
-      <nav className="p-4 flex items-center justify-between">
-        <span>Some header component here</span>
-      </nav>
+      <SidebarWithHeader />
       <Outlet />
     </div>
   );
@@ -26,6 +28,14 @@ const InnerRouter = () => {
         {
           index: true,
           element: <IndexScreen />,
+        },
+        {
+          path: "/team/:teamName",
+          element: <TeamHistory />,
+        },
+        {
+          path: "/matchup/:team1&:team2",
+          element: <TeamHistory />,
         },
         {
           path: "*",
