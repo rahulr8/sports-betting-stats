@@ -20,7 +20,7 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-export const SidebarContent = ({ onClose }: SidebarProps) => {
+export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
       transition="3s ease"
@@ -30,6 +30,7 @@ export const SidebarContent = ({ onClose }: SidebarProps) => {
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
+      {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <ChakraLink href="/">
@@ -50,7 +51,7 @@ export const SidebarContent = ({ onClose }: SidebarProps) => {
                     <Flex>
                       <img src={`https://flagcdn.com/${league.flagSVGcode}.svg`} width="30" alt="England" />
                       <Text fontWeight={600} px={2}>
-                        {league.name}{" "}
+                        {league.name}
                       </Text>
                     </Flex>
                     <AccordionIcon />

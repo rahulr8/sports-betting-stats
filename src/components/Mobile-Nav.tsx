@@ -27,6 +27,27 @@ interface MobileProps extends FlexProps {
 export const MobileNav = ({ onOpen }: MobileProps) => {
   const { state } = useAuthState();
   const { teamName } = useParams<{ teamName: string }>();
+
+  const teamHistoryLink = (
+    <Link to={`/team/${teamName || footballLeagues[0].teams[0].abreviation}`}>
+      <Text mr={5} fontWeight={600} fontSize="large">
+        Team history
+      </Text>
+    </Link>
+  );
+
+  const matchupHistoryLink = (
+    <Link
+      to={`/matchup?team1=${teamName || footballLeagues[0].teams[0].abreviation}&team2=${
+        footballLeagues[0].teams[1].abreviation
+      }`}
+    >
+      <Text fontWeight={600} fontSize="large">
+        Matchup history
+      </Text>
+    </Link>
+  );
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -48,20 +69,8 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
       />
       <Flex display={{ base: "none", md: "flex" }} justifyContent="space-between" w={300}>
         {/* replace link redirects to states holding teams */}
-        <Link to={`/team/${teamName || footballLeagues[0].teams[0].abreviation}`}>
-          <Text mr={5} fontWeight={600} fontSize="large">
-            Team history
-          </Text>
-        </Link>
-        <Link
-          to={`/matchup?team1=${teamName || footballLeagues[0].teams[0].abreviation}&team2=${
-            footballLeagues[0].teams[1].abreviation
-          }`}
-        >
-          <Text fontWeight={600} fontSize="large">
-            Matchup history
-          </Text>
-        </Link>
+        {teamHistoryLink}
+        {matchupHistoryLink}
       </Flex>
       {/* replace with logo */}
       <ChakraLink href="/">
@@ -74,7 +83,13 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
           <Menu>
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: "none" }}>
               <HStack>
-                {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? <SignInButton /> : <SignOutButton />}
+                <Box display={{ base: "none", md: "flex" }}>
+                  {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? (
+                    <SignInButton />
+                  ) : (
+                    <SignOutButton />
+                  )}
+                </Box>
                 <Box display={{ base: "flex", md: "none" }}>
                   <FiChevronDown />
                 </Box>
@@ -84,8 +99,8 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Team History</MenuItem>
-              <MenuItem>Team Matchup</MenuItem>
+              <MenuItem>{teamHistoryLink}</MenuItem>
+              <MenuItem>{matchupHistoryLink}</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
