@@ -2,7 +2,7 @@ import { Flex, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 import { teamAbreviation } from "constants/teams";
-import { TeamHistoryBody } from "containers/TeamHistoryBody";
+import TeamHistoryBody from "containers/TeamHistoryBody";
 import { mockData } from "constants/stats";
 
 // create array of objects mock data from GateDataType
@@ -13,7 +13,7 @@ const TeamHistory: React.FC = () => {
   return (
     <Flex textAlign="center" direction="column">
       {/* only display if teamName is defined */}
-      {teamName && <Heading position="fixed">{teamAbreviation[teamName]}</Heading>}
+      {teamName && <Heading>{teamAbreviation[teamName]}</Heading>}
       <TeamHistoryBody gameData={mockData} />
     </Flex>
   );

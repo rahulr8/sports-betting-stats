@@ -1,12 +1,12 @@
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 
-import { statVariables } from "constants/stats";
+import { GameDataKeys, statVariables } from "constants/stats";
 
 type TeamHistoryFilterProps = {
-  setFilterValue: (value: string) => void;
+  setFilterValue: (value: GameDataKeys) => void;
   filterValue: string;
 };
-export const TeamHistoryFilter = ({ setFilterValue, filterValue }: TeamHistoryFilterProps) => {
+const TeamHistoryFilter = ({ setFilterValue, filterValue }: TeamHistoryFilterProps) => {
   return (
     <RadioGroup onChange={setFilterValue} value={filterValue}>
       <Stack direction="column">
@@ -21,3 +21,5 @@ export const TeamHistoryFilter = ({ setFilterValue, filterValue }: TeamHistoryFi
     </RadioGroup>
   );
 };
+
+export default TeamHistoryFilter;
