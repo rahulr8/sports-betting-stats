@@ -41,29 +41,31 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {/* League sidebar Accordion */}
-      <Accordion defaultIndex={[0]} allowMultiple>
-        {footballLeagues.map(
-          (league) =>
-            league.enabled && (
-              <AccordionItem key={league.name}>
-                <h2>
-                  <AccordionButton>
-                    <Flex>
-                      <img src={`https://flagcdn.com/${league.flagSVGcode}.svg`} width="30" alt="England" />
-                      <Text fontWeight={600} px={2}>
-                        {league.name}
-                      </Text>
-                    </Flex>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <Teams teams={league.teams} />
-                </AccordionPanel>
-              </AccordionItem>
-            ),
-        )}
-      </Accordion>
+      <Box overflow="auto" height="90vh">
+        <Accordion defaultIndex={[0]} allowMultiple>
+          {footballLeagues.map(
+            (league) =>
+              league.enabled && (
+                <AccordionItem key={league.name}>
+                  <h2>
+                    <AccordionButton>
+                      <Flex>
+                        <img src={`https://flagcdn.com/${league.flagSVGcode}.svg`} width="30" alt="England" />
+                        <Text fontWeight={600} px={2}>
+                          {league.name}
+                        </Text>
+                      </Flex>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <Teams teams={league.teams} />
+                  </AccordionPanel>
+                </AccordionItem>
+              ),
+          )}
+        </Accordion>
+      </Box>
     </Box>
   );
 };
