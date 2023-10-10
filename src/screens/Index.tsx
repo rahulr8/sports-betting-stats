@@ -1,15 +1,6 @@
-import React, { Box } from "@chakra-ui/react";
-import { useEffect } from "react";
-
-import { fetchMatchesForTeam } from "../api/team";
+import { Box } from "@chakra-ui/react";
 
 function Index() {
-  // main page to be styled
-  // Make an API call here
-  useEffect(() => {
-    fetchMatchesForTeam("Arsenal");
-  }, []);
-
   return (
     <Box>
       <h1>Home Page</h1>
