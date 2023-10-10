@@ -1,4 +1,5 @@
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { Button } from "@chakra-ui/react";
 
 import { useAuth } from "api/firebase";
 
@@ -12,9 +13,5 @@ export const SignInButton = () => {
     signInWithRedirect(auth, provider);
   };
 
-  return (
-    <button onClick={handleClick} type="button" className="btn btn-primary normal-case min-w-60">
-      Sign In With Google
-    </button>
-  );
+  return <Button onClick={handleClick}>Sign In With Google</Button>;
 };
