@@ -10,9 +10,9 @@ export const Teams = ({ teams }: { teams: Team[] }) => {
     <Flex direction="column">
       {teams.map((team) => {
         return (
-          <Link key={team.name} to={`/team/${team.name}`}>
+          <Link key={team.name} to={`/team/${team.abreviation}`}>
             <Flex
-              bg={teamName === team.name ? "white" : "blue.300"}
+              bg={teamName === team.abreviation ? "white" : "blue.300"}
               key={team.name}
               mx={2}
               my={1}

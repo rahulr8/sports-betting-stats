@@ -111,14 +111,14 @@ const MobileNav = ({ onOpen }: MobileProps) => {
       />
       <Flex display={{ base: "none", md: "flex" }} justifyContent="space-between" w={300}>
         {/* replace link redirects to states holding teams */}
-        <Link to={`/team/${teamName || footballLeagues[0].teams[0].name}`}>
+        <Link to={`/team/${teamName || footballLeagues[0].teams[0].abreviation}`}>
           <Text mr={5} fontWeight={600} fontSize="large">
             Team history
           </Text>
         </Link>
         <Link
-          to={`/matchup?team1=${teamName || footballLeagues[0].teams[0].name}&team2=${
-            footballLeagues[0].teams[1].name
+          to={`/matchup?team1=${teamName || footballLeagues[0].teams[0].abreviation}&team2=${
+            footballLeagues[0].teams[1].abreviation
           }`}
         >
           <Text fontWeight={600} fontSize="large">
