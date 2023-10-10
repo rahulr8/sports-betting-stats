@@ -13,6 +13,7 @@ import {
   Box,
   MenuList,
   MenuItem,
+  MenuDivider,
 } from "@chakra-ui/react";
 
 import { SignInButton } from "containers/SignInButton";
@@ -101,6 +102,10 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
             >
               <MenuItem>{teamHistoryLink}</MenuItem>
               <MenuItem>{matchupHistoryLink}</MenuItem>
+              <MenuDivider />
+              <MenuItem>
+                {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? <SignInButton /> : <SignOutButton />}
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>
