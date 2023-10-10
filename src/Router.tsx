@@ -1,17 +1,22 @@
 import { Suspense, lazy } from "react";
 import { Outlet, RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 
-import TeamHistory from "containers/TeamHistory";
 import SidebarWithHeader from "components/Sidebar";
-import TeamMatchup from "containers/TeamMatchup";
 
 const Loading = () => {
-  return <Text>Loading...</Text>;
+  // return centered loading spinner
+  return (
+    <Box textAlign="center" mt="20%">
+      <Spinner size="xl" />
+    </Box>
+  );
 };
 
 const IndexScreen = lazy(() => import("screens/Index"));
 const Page404Screen = lazy(() => import("screens/404"));
+const TeamHistoryScreen = lazy(() => import("screens/TeamHistory"));
+const TeamMatchupScreen = lazy(() => import("screens/TeamMatchup"));
 
 function Layout() {
   return (
@@ -36,11 +41,11 @@ const InnerRouter = () => {
         },
         {
           path: "/team/:teamName",
-          element: <TeamHistory />,
+          element: <TeamHistoryScreen />,
         },
         {
           path: "/matchup",
-          element: <TeamMatchup />,
+          element: <TeamMatchupScreen />,
         },
         {
           path: "*",
