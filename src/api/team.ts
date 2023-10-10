@@ -30,6 +30,30 @@ export const fetchMatchesForTeam = async (teamName: string): Promise<Match[]> =>
       matches.push({ id: doc.id, ...doc.data() } as Match);
     });
 
+    console.log("all matches for team", matches);
+
+    return matches;
+  } catch (error) {
+    console.error("Error fetching matches: ", error);
+    throw error;
+  }
+};
+
+// API call to get all documents inside the "england" collection
+export const fetchAllMatches = async (): Promise<Match[]> => {
+  try {
+    const db = firestore();
+    const matchesQuery = query(collection(db, "england"));
+    const querySnapshot = await getDocs(matchesQuery);
+
+    const matches: Match[] = [];
+
+    querySnapshot.forEach((doc: DocumentData) => {
+      matches.push({ id: doc.id, ...doc.data() } as Match);
+    });
+
+    console.log("All matches!", matches);
+
     return matches;
   } catch (error) {
     console.error("Error fetching matches: ", error);

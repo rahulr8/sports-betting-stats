@@ -1,10 +1,18 @@
+import React, { useEffect } from "react";
+
 import { useAuthState } from "contexts/UserContext";
 import { SignInButton } from "containers/SignInButton";
 import { SignOutButton } from "containers/SignOutButton";
 import { Head } from "components/Head";
+import { fetchMatchesForTeam } from "api/team";
 
 function Index() {
   const { state } = useAuthState();
+
+  // Make an API call here
+  useEffect(() => {
+    fetchMatchesForTeam("Arsenal");
+  }, []);
 
   return (
     <>
