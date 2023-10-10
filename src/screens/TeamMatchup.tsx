@@ -1,11 +1,10 @@
 import { Flex } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const TeamMatchup: React.FC = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const team1 = searchParams.get("team1");
-  const team2 = searchParams.get("team2");
+  const { teamMatchup } = useParams();
+
+  const [team1, team2] = teamMatchup ? teamMatchup.split("-") : [];
 
   return (
     <Flex textAlign="center">

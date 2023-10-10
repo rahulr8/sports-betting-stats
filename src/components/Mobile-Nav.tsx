@@ -39,9 +39,7 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
 
   const matchupHistoryLink = (
     <Link
-      to={`/matchup?team1=${teamName || footballLeagues[0].teams[0].abreviation}&team2=${
-        footballLeagues[0].teams[1].abreviation
-      }`}
+      to={`/matchup/${teamName || footballLeagues[0].teams[0].abreviation}-${footballLeagues[0].teams[1].abreviation}`}
     >
       <Text fontWeight={600} fontSize="large">
         Matchup history
