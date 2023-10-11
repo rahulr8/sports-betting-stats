@@ -2,10 +2,10 @@ import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 import TeamHistoryFilter from "components/Team-History-Filter";
-import { GameDataKeys, GameDataType } from "constants/stats";
 import TeamHistoryGraph from "components/Team-History-Graph";
+import { Match, MatchKeys } from "types/match";
 
-const homeTeamHistoryFilter = (variable: GameDataKeys, games: GameDataType[]) => {
+const homeTeamHistoryFilter = (variable: MatchKeys, games: Match[]) => {
   return games.map((game) => {
     return {
       awayTeam: game.awayTeam,
@@ -15,7 +15,7 @@ const homeTeamHistoryFilter = (variable: GameDataKeys, games: GameDataType[]) =>
 };
 
 interface TeamHistoryBodyProps {
-  gameData: GameDataType[];
+  gameData: Match[];
 }
 
 interface HomeGameDataType {
@@ -25,15 +25,15 @@ interface HomeGameDataType {
 
 const TeamHistoryBody = (props: TeamHistoryBodyProps) => {
   const { gameData } = props;
-  const [value, setValue] = useState<GameDataKeys>("hxPts"); // defaults to Home expected points
+  const [value, setValue] = useState<MatchKeys>("hxPts"); // defaults to Home expected points
   const [homeData, setHomeData] = useState<HomeGameDataType[]>([]);
   // const [awayData, setAwayData] = useState([]);
-  console.log(value);
+
   useEffect(() => {
     setHomeData(homeTeamHistoryFilter(value, gameData));
     // setAwayData(awayTeamHistoryFilter(value, gameData));
   }, [value, gameData]);
-
+  console.log(homeData);
   return (
     <Flex direction="row">
       <TeamHistoryFilter setFilterValue={setValue} filterValue={value} />

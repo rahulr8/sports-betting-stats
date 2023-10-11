@@ -44,7 +44,7 @@ const InnerRouter = () => {
           element: <TeamHistoryScreen />,
         },
         {
-          path: "/matchup",
+          path: "/matchup/:teamMatchup",
           element: <TeamMatchupScreen />,
         },
         {

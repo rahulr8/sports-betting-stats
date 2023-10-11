@@ -4,7 +4,7 @@ import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { connectStorageEmulator, getStorage } from "firebase/storage";
 
 let firebaseApp: FirebaseApp;
-const useEmulator = () => import.meta.env.VITE_USE_FIREBASE_EMULATOR;
+const emulator = () => import.meta.env.VITE_USE_FIREBASE_EMULATOR;
 
 export const setupFirebase = () => {
   try {
@@ -23,33 +23,31 @@ export const setupFirebase = () => {
 };
 
 let auth: Auth;
-let firestore: ReturnType<typeof getFirestore>;
+let firestoreInstance: ReturnType<typeof getFirestore>;
 let storage: ReturnType<typeof getStorage>;
 
 export const useAuth = () => {
   auth = getAuth(firebaseApp);
-  if (useEmulator()) {
+  if (emulator()) {
     connectAuthEmulator(auth, "http://localhost:9099");
   }
   return auth;
 };
 
-export const useFirestore = () => {
-  const emulator = useEmulator();
-  if (!firestore) {
-    firestore = getFirestore();
-    if (emulator) {
-      connectFirestoreEmulator(firestore, "localhost", 8080);
+export const firestore = () => {
+  if (!firestoreInstance) {
+    firestoreInstance = getFirestore();
+    if (emulator()) {
+      connectFirestoreEmulator(firestoreInstance, "localhost", 8080);
     }
   }
-  return firestore;
+  return firestoreInstance;
 };
 
 export const useStorage = () => {
-  const emulator = useEmulator();
   if (!storage) {
     storage = getStorage();
-    if (emulator) {
+    if (emulator()) {
       connectStorageEmulator(storage, "localhost", 9199);
     }
   }

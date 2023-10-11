@@ -1,8 +1,8 @@
-type TeamAbreviation = {
+type TeamCodeType = {
   [key: string]: string;
 };
-// current Teams in the Premier League, which will be mapped for the UI, will not contain all Team constants as there are teams now in the Championship and League One
-export const teamAbreviation: TeamAbreviation = {
+
+export const TeamCode: TeamCodeType = {
   ars: "Arsenal",
   avl: "Aston Villa",
   bou: "Bournemouth",
@@ -58,3 +58,4 @@ export type PremierLeagueTeam =
   | "Queens Park Rangers"
   | "Hull";
 // to be continued
+export type TeamCodeKey = keyof typeof TeamCode;
