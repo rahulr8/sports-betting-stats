@@ -23,7 +23,7 @@ export const setupFirebase = () => {
 };
 
 let auth: Auth;
-let firestore: ReturnType<typeof getFirestore>;
+let firestoreInstance: ReturnType<typeof getFirestore>;
 let storage: ReturnType<typeof getStorage>;
 
 export const useAuth = () => {
@@ -34,14 +34,14 @@ export const useAuth = () => {
   return auth;
 };
 
-export const firestoreFunc = () => {
-  if (!firestore) {
-    firestore = getFirestore();
+export const firestore = () => {
+  if (!firestoreInstance) {
+    firestoreInstance = getFirestore();
     if (emulator()) {
-      connectFirestoreEmulator(firestore, "localhost", 8080);
+      connectFirestoreEmulator(firestoreInstance, "localhost", 8080);
     }
   }
-  return firestore;
+  return firestoreInstance;
 };
 
 export const useStorage = () => {
