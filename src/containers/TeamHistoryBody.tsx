@@ -5,39 +5,40 @@ import TeamHistoryFilter from "components/Team-History-Filter";
 import TeamHistoryGraph from "components/Team-History-Graph";
 import { Match, MatchKeys } from "types/match";
 
-const homeTeamHistoryFilter = (variable: MatchKeys, games: Match[]) => {
+const teamHistoryFilter = (variable: MatchKeys, games: Match[], team: string) => {
   return games.map((game) => {
     return {
-      awayTeam: game.awayTeam,
+      team: team === game.homeTeam ? game.awayTeam : game.homeTeam,
       value: game[variable],
+      home: team === game.homeTeam,
     };
   });
 };
 
 interface TeamHistoryBodyProps {
   gameData: Match[];
+  team: string;
 }
 
-interface HomeGameDataType {
-  awayTeam: string;
+interface GameDataType {
+  team: string;
   value: number | string;
+  home: boolean;
 }
 
 const TeamHistoryBody = (props: TeamHistoryBodyProps) => {
-  const { gameData } = props;
+  const { gameData, team } = props;
   const [value, setValue] = useState<MatchKeys>("hxPts"); // defaults to Home expected points
-  const [homeData, setHomeData] = useState<HomeGameDataType[]>([]);
-  // const [awayData, setAwayData] = useState([]);
+  const [homeData, setHomeData] = useState<GameDataType[]>([]);
 
   useEffect(() => {
-    setHomeData(homeTeamHistoryFilter(value, gameData));
-    // setAwayData(awayTeamHistoryFilter(value, gameData));
+    setHomeData(teamHistoryFilter(value, gameData, team));
   }, [value, gameData]);
-  console.log(homeData);
+
   return (
     <Flex direction="row">
       <TeamHistoryFilter setFilterValue={setValue} filterValue={value} />
-      <TeamHistoryGraph homeData={homeData} />
+      <TeamHistoryGraph gameData={homeData} />
     </Flex>
   );
 };

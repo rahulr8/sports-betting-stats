@@ -25,7 +25,7 @@ const TeamHistory: React.FC = () => {
     <Flex textAlign="center" direction="column">
       {/* only display if teamName is defined */}
       {teamName && <Heading>{TeamCode[teamName]}</Heading>}
-      <TeamHistoryBody gameData={matches} />
+      <TeamHistoryBody gameData={matches} team={TeamCode[teamName]} />
     </Flex>
   );
 };
