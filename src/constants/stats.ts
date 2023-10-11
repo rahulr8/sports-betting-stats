@@ -4,26 +4,26 @@ export const Stats: StatMapping = {
   // Teams and Match
   LeagueDivision: "div",
   MatchDate: "date",
-  HomeTeam: "hometeam",
-  AwayTeam: "awayteam",
+  HomeTeam: "homeTeam",
+  AwayTeam: "awayTeam",
 
   // Team Ratings
-  HomeTeamOverallRating: "htoa",
-  AwayTeamOverallRating: "atoa",
-  HomeTeamAttackRating: "htat",
-  AwayTeamAttackRating: "atat",
-  HomeTeamMidfieldRating: "htmid",
-  AwayTeamMidfieldRating: "atmid",
-  HomeTeamDefenceRating: "htdef",
-  AwayTeamDefenceRating: "atdef",
+  HomeTeamOverallRating: "htOa",
+  AwayTeamOverallRating: "atOa",
+  HomeTeamAttackRating: "htAt",
+  AwayTeamAttackRating: "atAt",
+  HomeTeamMidfieldRating: "htMid",
+  AwayTeamMidfieldRating: "atMid",
+  HomeTeamDefenceRating: "htDef",
+  AwayTeamDefenceRating: "atDef",
 
   // Team Details
-  HomeTeamSquadSize: "homesquad",
-  AwayTeamSquadSize: "awaysquad",
-  HomeTeamAverageAge: "homeavgage",
-  AwayTeamAverageAge: "awayavgage",
-  HomeTeamMarketValue: "homemv",
-  AwayTeamMarketValue: "awaymv",
+  HomeTeamSquadSize: "homeSquad",
+  AwayTeamSquadSize: "awaySquad",
+  HomeTeamAverageAge: "homeAvgAge",
+  AwayTeamAverageAge: "awayAvgAge",
+  HomeTeamMarketValue: "homeMv",
+  AwayTeamMarketValue: "awayMv",
 
   // Match Details: Full Time
   FullTimeHomeGoals: "fthg",
@@ -50,22 +50,24 @@ export const Stats: StatMapping = {
   AwayTeamRedCards: "ar",
 
   // Expected Metrics
-  HomeTeamExpectedGoals: "hxg",
-  AwayTeamExpectedGoals: "axg",
-  HomeTeamExpectedGoalsAfterKeyPasses: "hxa",
-  AwayTeamExpectedGoalsAfterKeyPasses: "axa",
-  HomeTeamExpectedPoints: "hxpts",
-  AwayTeamExpectedPoints: "axpts",
+  HomeTeamExpectedGoals: "hxG",
+  AwayTeamExpectedGoals: "axG",
+  HomeTeamExpectedGoalsAfterKeyPasses: "hxA",
+  AwayTeamExpectedGoalsAfterKeyPasses: "axA",
+  HomeTeamExpectedPoints: "hxPts",
+  AwayTeamExpectedPoints: "axPts",
   HomeTeamPassesAllowedPerDefensiveAction: "hppda",
   AwayTeamPassesAllowedPerDefensiveAction: "appda",
 
   // Betting Odds: Bet365
-  Bet365HomeOdds: "b365h",
-  Bet365DrawOdds: "b365d",
-  Bet365AwayOdds: "b365a",
+  Bet365HomeOdds: "b365H",
+  Bet365DrawOdds: "b365D",
+  Bet365AwayOdds: "b365A",
 
   // Betting Odds: Bet&Win
   BetAndWinHomeOdds: "bwh",
   BetAndWinDrawOdds: "bwd",
   BetAndWinAwayOdds: "bwa",
+
+  // ... additional mappings for other betting odds
 };
