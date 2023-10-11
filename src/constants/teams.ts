@@ -1,8 +1,8 @@
-type TeamAbreviation = {
+type TeamCodeType = {
   [key: string]: string;
 };
 
-export const teamAbreviation: TeamAbreviation = {
+export const TeamCode: TeamCodeType = {
   ars: "Arsenal",
   avl: "Aston Villa",
   bou: "Bournemouth",
@@ -24,3 +24,4 @@ export const teamAbreviation: TeamAbreviation = {
   whu: "West Ham United",
   wol: "Wolverhampton Wanderers",
 };
+export type TeamCodeKey = keyof typeof TeamCode;

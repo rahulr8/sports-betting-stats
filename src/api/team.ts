@@ -1,5 +1,6 @@
 import { query, getDocs, where, collection, DocumentData } from "firebase/firestore";
 
+import { TeamCodeKey } from "constants/teams";
 import { firestore } from "api/firebase";
 import { Match } from "types/match";
 
@@ -9,12 +10,11 @@ import { Match } from "types/match";
  * @param {string} teamName
  * @returns {Promise<Match[]>} - A promise that resolves to an array of matches.
  */
-export const fetchMatchesForTeam = async (teamName: string): Promise<Match[]> => {
+export const fetchMatchesForTeam = async (teamName: TeamCodeKey): Promise<Match[]> => {
   try {
     const db = firestore();
     // Here two queries are needed since Firestore does not support logical OR in a single query
     const homeMatchesQuery = query(collection(db, "england"), where("homeTeam", "==", teamName));
-
     const awayMatchesQuery = query(collection(db, "england"), where("awayTeam", "==", teamName));
 
     const homeQuerySnapshot = await getDocs(homeMatchesQuery);
@@ -29,8 +29,6 @@ export const fetchMatchesForTeam = async (teamName: string): Promise<Match[]> =>
     awayQuerySnapshot.forEach((doc: DocumentData) => {
       matches.push({ id: doc.id, ...doc.data() } as Match);
     });
-
-    console.log("all matches for team", matches);
 
     return matches;
   } catch (error) {

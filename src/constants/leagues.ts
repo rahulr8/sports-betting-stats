@@ -1,6 +1,6 @@
 export interface Team {
   name: string;
-  abreviation: string;
+  code: string;
 }
 
 interface FootballLeague {
@@ -14,26 +14,26 @@ export const footballLeagues: FootballLeague[] = [
   {
     name: "Premier League",
     teams: [
-      { name: "Arsenal", abreviation: "ars" },
-      { name: "Aston Villa", abreviation: "avl" },
-      { name: "Bournemouth", abreviation: "bou" },
-      { name: "Brentford", abreviation: "bre" },
-      { name: "Brighton & Hove Albion", abreviation: "bha" },
-      { name: "Burnley", abreviation: "bur" },
-      { name: "Chelsea", abreviation: "che" },
-      { name: "Crystal Palace", abreviation: "cry" },
-      { name: "Everton", abreviation: "eve" },
-      { name: "Fulham", abreviation: "ful" },
-      { name: "Liverpool", abreviation: "liv" },
-      { name: "Luton Town", abreviation: "lut" },
-      { name: "Manchester City", abreviation: "mci" },
-      { name: "Manchester United", abreviation: "mun" },
-      { name: "Newcastle United", abreviation: "new" },
-      { name: "Nottingham Forest", abreviation: "nfo" },
-      { name: "Sheffield United", abreviation: "shu" },
-      { name: "Tottenham Hotspur", abreviation: "tot" },
-      { name: "West Ham United", abreviation: "whu" },
-      { name: "Wolverhampton Wanderers", abreviation: "wol" },
+      { name: "Arsenal", code: "ars" },
+      { name: "Aston Villa", code: "avl" },
+      { name: "Bournemouth", code: "bou" },
+      { name: "Brentford", code: "bre" },
+      { name: "Brighton & Hove Albion", code: "bha" },
+      { name: "Burnley", code: "bur" },
+      { name: "Chelsea", code: "che" },
+      { name: "Crystal Palace", code: "cry" },
+      { name: "Everton", code: "eve" },
+      { name: "Fulham", code: "ful" },
+      { name: "Liverpool", code: "liv" },
+      { name: "Luton Town", code: "lut" },
+      { name: "Manchester City", code: "mci" },
+      { name: "Manchester United", code: "mun" },
+      { name: "Newcastle United", code: "new" },
+      { name: "Nottingham Forest", code: "nfo" },
+      { name: "Sheffield United", code: "shu" },
+      { name: "Tottenham Hotspur", code: "tot" },
+      { name: "West Ham United", code: "whu" },
+      { name: "Wolverhampton Wanderers", code: "wol" },
     ],
     enabled: true,
     flagSVGcode: "gb-eng",
@@ -41,8 +41,8 @@ export const footballLeagues: FootballLeague[] = [
   {
     name: "La Liga",
     teams: [
-      { name: "Team A", abreviation: "team1" },
-      { name: "Team B", abreviation: "team2" },
+      { name: "Team A", code: "team1" },
+      { name: "Team B", code: "team2" },
     ],
     enabled: false,
     flagSVGcode: "es",

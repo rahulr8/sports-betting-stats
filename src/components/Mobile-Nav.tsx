@@ -30,7 +30,7 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
   const { teamName } = useParams<{ teamName: string }>();
 
   const teamHistoryLink = (
-    <Link to={`/team/${teamName || footballLeagues[0].teams[0].abreviation}`}>
+    <Link to={`/team/${teamName || footballLeagues[0].teams[0].code}`}>
       <Text mr={5} fontWeight={600} fontSize="large">
         Team history
       </Text>
@@ -38,9 +38,7 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
   );
 
   const matchupHistoryLink = (
-    <Link
-      to={`/matchup/${teamName || footballLeagues[0].teams[0].abreviation}-${footballLeagues[0].teams[1].abreviation}`}
-    >
+    <Link to={`/matchup/${teamName || footballLeagues[0].teams[0].code}-${footballLeagues[0].teams[1].code}`}>
       <Text fontWeight={600} fontSize="large">
         Matchup history
       </Text>
