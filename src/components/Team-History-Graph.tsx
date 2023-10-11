@@ -36,26 +36,30 @@ const TeamHistoryGraph = (props: TeamHistoryGraphProps) => {
   });
 
   return (
-    <Box>
-      <Heading>HOME</Heading>
-      {displayHomeMatches.map((game) => {
-        return (
-          <Flex key={game.team + game.home} direction="row">
-            <Text>{game.team}: </Text>
-            <Text>{game.value}</Text>
-          </Flex>
-        );
-      })}
-      <Heading>AWAY</Heading>
-      {displayAwayMatches.map((game) => {
-        return (
-          <Flex key={game.team + game.home} direction="row">
-            <Text>{game.team}: </Text>
-            <Text>{game.value}</Text>
-          </Flex>
-        );
-      })}
-    </Box>
+    <Flex direction="row" alignContent="center">
+      <Flex direction="column">
+        <Heading>HOME</Heading>
+        {displayHomeMatches.map((game) => {
+          return (
+            <Flex key={game.team + game.home} direction="row">
+              <Text>{game.team}: </Text>
+              <Text>{game.value}</Text>
+            </Flex>
+          );
+        })}
+      </Flex>
+      <Flex direction="column">
+        <Heading>AWAY</Heading>
+        {displayAwayMatches.map((game) => {
+          return (
+            <Flex key={game.team + game.home} direction="row">
+              <Text>{game.team}: </Text>
+              <Text>{game.value}</Text>
+            </Flex>
+          );
+        })}
+      </Flex>
+    </Flex>
   );
 };
 
