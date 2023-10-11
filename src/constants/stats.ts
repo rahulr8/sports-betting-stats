@@ -68,6 +68,4 @@ export const Stats: StatMapping = {
   BetAndWinHomeOdds: "bwh",
   BetAndWinDrawOdds: "bwd",
   BetAndWinAwayOdds: "bwa",
-
-  // ... additional mappings for other betting odds
 };
