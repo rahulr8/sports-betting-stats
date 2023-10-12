@@ -17,11 +17,11 @@ import {
 
 import { SoccerLeagues } from "constants/soccer/leagues";
 
-interface MobileProps extends FlexProps {
+interface NavProps extends FlexProps {
   onOpen: () => void;
 }
 
-export const MobileNav = ({ onOpen }: MobileProps) => {
+export const Nav = ({ onOpen }: NavProps) => {
   const { teamName = "" } = useParams<{ teamName: string }>();
 
   const leagueCode =
