@@ -33,7 +33,7 @@ export const fetchMatchesForTeam = async (teamName: TeamCodeKey, leagueCode: Soc
   }
 };
 
-export const fetchAllMatches = async (leagueCode: string): Promise<Match[]> => {
+export const fetchAllMatches = async (leagueCode: SoccerLeagueCode): Promise<Match[]> => {
   try {
     const matchesQuery = query(collection(firestore(), leagueCode));
     const querySnapshot = await getDocs(matchesQuery);

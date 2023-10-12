@@ -22,7 +22,7 @@ interface MobileProps extends FlexProps {
 }
 
 export const MobileNav = ({ onOpen }: MobileProps) => {
-  const { teamName } = useParams<{ teamName: string }>();
+  const { teamName = "" } = useParams<{ teamName: string }>();
 
   const teamHistoryLink = (
     <Link to={`soccer/team/${teamName || SoccerLeagues[0].teams[0].code}`}>
