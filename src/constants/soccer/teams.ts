@@ -24,11 +24,11 @@ export const PremierLeagueTeams: Team[] = [
 ];
 
 export const LaLigaTeams: Team[] = [
-  { name: "Alavés", code: "alv" },
+  { name: "Alaves", code: "alv" },
   { name: "Athletic Club", code: "ath" },
-  { name: "Atlético Madrid", code: "atm" },
+  { name: "Atletico Madrid", code: "atm" },
   { name: "Barcelona", code: "bar" },
-  { name: "Cádiz", code: "cad" },
+  { name: "Cadiz", code: "cad" },
   { name: "Celta Vigo", code: "cel" },
   { name: "Deportivo Alavés", code: "dea" },
   { name: "Eibar", code: "eib" },

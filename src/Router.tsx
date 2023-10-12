@@ -1,17 +1,9 @@
 import { Suspense, lazy } from "react";
 import { RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
-import { Box, Spinner } from "@chakra-ui/react";
 
 import BaseLayout from "layouts/Base";
-
-const Loading = () => {
-  // return centered loading spinner
-  return (
-    <Box textAlign="center" mt="20%">
-      <Spinner size="xl" />
-    </Box>
-  );
-};
+import LoadingSpinner from "components/Loading-Spinner";
+import { Sports } from "constants/common";
 
 // Screens List
 const IndexScreen = lazy(() => import("screens/Index"));
@@ -30,11 +22,11 @@ const InnerRouter = () => {
           element: <IndexScreen />,
         },
         {
-          path: "soccer/team/:teamName",
+          path: `${Sports.Soccer}/:leagueCode/team/:teamName`,
           element: <TeamHistoryScreen />,
         },
         {
-          path: "soccer/matchup/:teamMatchup",
+          path: `${Sports.Soccer}/:leagueCode/matchup/:teamMatchup`,
           element: <TeamMatchupScreen />,
         },
         {
@@ -47,7 +39,7 @@ const InnerRouter = () => {
   const element = useRoutes(routes);
   return (
     <div>
-      <Suspense fallback={<Loading />}>{element}</Suspense>
+      <Suspense fallback={<LoadingSpinner />}>{element}</Suspense>
     </div>
   );
 };

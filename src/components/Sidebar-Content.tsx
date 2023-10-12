@@ -59,7 +59,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                     </AccordionButton>
                   </h2>
                   <AccordionPanel pb={4}>
-                    <Teams teams={league.teams} />
+                    <Teams teams={league.teams} leagueCode={league.code} />
                   </AccordionPanel>
                 </AccordionItem>
               ),
