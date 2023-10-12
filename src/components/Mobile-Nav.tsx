@@ -19,7 +19,7 @@ import {
 import { SignInButton } from "containers/SignInButton";
 import { useAuthState } from "contexts/UserContext";
 import SignOutButton from "containers/SignOutButton";
-import { footballLeagues } from "constants/leagues";
+import { SoccerLeagues } from "constants/leagues";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -30,7 +30,7 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
   const { teamName } = useParams<{ teamName: string }>();
 
   const teamHistoryLink = (
-    <Link to={`/team/${teamName || footballLeagues[0].teams[0].code}`}>
+    <Link to={`soccer/team/${teamName || SoccerLeagues[0].teams[0].code}`}>
       <Text mr={5} fontWeight={600} fontSize="large">
         Team history
       </Text>
@@ -38,7 +38,7 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
   );
 
   const matchupHistoryLink = (
-    <Link to={`/matchup/${teamName || footballLeagues[0].teams[0].code}-${footballLeagues[0].teams[1].code}`}>
+    <Link to={`soccer/matchup/${teamName || SoccerLeagues[0].teams[0].code}-${SoccerLeagues[0].teams[1].code}`}>
       <Text fontWeight={600} fontSize="large">
         Matchup history
       </Text>

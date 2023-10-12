@@ -10,7 +10,7 @@ interface FootballLeague {
   flagSVGcode: string;
 }
 
-export const footballLeagues: FootballLeague[] = [
+export const SoccerLeagues: FootballLeague[] = [
   {
     name: "Premier League",
     teams: [

@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Teams } from "./Teams";
-import { footballLeagues } from "constants/leagues";
+import { SoccerLeagues } from "constants/leagues";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -43,7 +43,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {/* League sidebar Accordion */}
       <Box overflow="auto" height="90vh">
         <Accordion defaultIndex={[0]} allowMultiple>
-          {footballLeagues.map(
+          {SoccerLeagues.map(
             (league) =>
               league.enabled && (
                 <AccordionItem key={league.name}>

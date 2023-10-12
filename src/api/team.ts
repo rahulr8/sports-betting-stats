@@ -3,6 +3,7 @@ import { query, getDocs, where, collection, DocumentData } from "firebase/firest
 import { TeamCodeKey } from "constants/teams";
 import { firestore } from "api/firebase";
 import { Match } from "types/match";
+import { EnglandSoccerStats } from "./stats";
 
 /**
  * Fetch all matches where the provided `teamName` is either a home or away team.
@@ -14,8 +15,8 @@ export const fetchMatchesForTeam = async (teamName: TeamCodeKey): Promise<Match[
   try {
     const db = firestore();
     // Here two queries are needed since Firestore does not support logical OR in a single query
-    const homeMatchesQuery = query(collection(db, "england"), where("homeTeam", "==", teamName));
-    const awayMatchesQuery = query(collection(db, "england"), where("awayTeam", "==", teamName));
+    const homeMatchesQuery = query(EnglandSoccerStats, where("homeTeam", "==", teamName));
+    const awayMatchesQuery = query(EnglandSoccerStats, where("awayTeam", "==", teamName));
 
     const homeQuerySnapshot = await getDocs(homeMatchesQuery);
     const awayQuerySnapshot = await getDocs(awayMatchesQuery);
