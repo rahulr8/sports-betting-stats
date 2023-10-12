@@ -3,7 +3,7 @@ import { Box, useColorModeValue, Drawer, DrawerContent, useDisclosure } from "@c
 import { MobileNav } from "./Mobile-Nav";
 import { SidebarContent } from "./Sidebar-Content";
 
-const SidebarWithHeader = () => {
+const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box w="full" bg={useColorModeValue("gray.100", "gray.900")}>
@@ -20,10 +20,10 @@ const SidebarWithHeader = () => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* {/* mobilenav  */}
+
       <MobileNav onOpen={onOpen} />
     </Box>
   );
 };
 
-export default SidebarWithHeader;
+export default Sidebar;

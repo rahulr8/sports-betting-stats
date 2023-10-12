@@ -13,24 +13,19 @@ import {
   Box,
   MenuList,
   MenuItem,
-  MenuDivider,
 } from "@chakra-ui/react";
 
-import { SignInButton } from "containers/SignInButton";
-import { useAuthState } from "contexts/UserContext";
-import SignOutButton from "containers/SignOutButton";
-import { footballLeagues } from "constants/leagues";
+import { SoccerLeagues } from "constants/soccer/leagues";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 
 export const MobileNav = ({ onOpen }: MobileProps) => {
-  const { state } = useAuthState();
-  const { teamName } = useParams<{ teamName: string }>();
+  const { teamName = "" } = useParams<{ teamName: string }>();
 
   const teamHistoryLink = (
-    <Link to={`/team/${teamName || footballLeagues[0].teams[0].code}`}>
+    <Link to={`soccer/team/${teamName || SoccerLeagues[0].teams[0].code}`}>
       <Text mr={5} fontWeight={600} fontSize="large">
         Team history
       </Text>
@@ -38,7 +33,7 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
   );
 
   const matchupHistoryLink = (
-    <Link to={`/matchup/${teamName || footballLeagues[0].teams[0].code}-${footballLeagues[0].teams[1].code}`}>
+    <Link to={`soccer/matchup/${teamName || SoccerLeagues[0].teams[0].code}-${SoccerLeagues[0].teams[1].code}`}>
       <Text fontWeight={600} fontSize="large">
         Matchup history
       </Text>
@@ -80,13 +75,6 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
           <Menu>
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: "none" }}>
               <HStack>
-                <Box display={{ base: "none", md: "flex" }}>
-                  {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? (
-                    <SignInButton />
-                  ) : (
-                    <SignOutButton />
-                  )}
-                </Box>
                 <Box display={{ base: "flex", md: "none" }}>
                   <FiChevronDown />
                 </Box>
@@ -98,10 +86,6 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
             >
               <MenuItem>{teamHistoryLink}</MenuItem>
               <MenuItem>{matchupHistoryLink}</MenuItem>
-              <MenuDivider />
-              <MenuItem>
-                {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? <SignInButton /> : <SignOutButton />}
-              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>

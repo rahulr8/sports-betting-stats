@@ -1,4 +1,4 @@
-import { StatMapping } from "types/stats";
+import { StatMapping } from "types/soccer/stats";
 
 export const Stats: StatMapping = {
   // Teams and Match

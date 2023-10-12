@@ -1,50 +1,32 @@
 import { Suspense, lazy } from "react";
-import { Outlet, RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
-import { Box, Spinner } from "@chakra-ui/react";
+import { RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
 
-import SidebarWithHeader from "components/Sidebar";
+import BaseLayout from "layouts/Base";
+import LoadingSpinner from "components/Loading-Spinner";
+import { Sports } from "constants/common";
 
-const Loading = () => {
-  // return centered loading spinner
-  return (
-    <Box textAlign="center" mt="20%">
-      <Spinner size="xl" />
-    </Box>
-  );
-};
-
+// Screens List
 const IndexScreen = lazy(() => import("screens/Index"));
 const Page404Screen = lazy(() => import("screens/404"));
 const TeamHistoryScreen = lazy(() => import("screens/TeamHistory"));
 const TeamMatchupScreen = lazy(() => import("screens/TeamMatchup"));
 
-function Layout() {
-  return (
-    <Box>
-      <SidebarWithHeader />
-      <Box flex="1" ml={{ base: 0, md: 60 }}>
-        <Outlet />
-      </Box>
-    </Box>
-  );
-}
-
 const InnerRouter = () => {
   const routes: RouteObject[] = [
     {
       path: "/",
-      element: <Layout />,
+      element: <BaseLayout />,
       children: [
         {
           index: true,
           element: <IndexScreen />,
         },
         {
-          path: "/team/:teamName",
+          path: `${Sports.Soccer}/:leagueCode/team/:teamName`,
           element: <TeamHistoryScreen />,
         },
         {
-          path: "/matchup/:teamMatchup",
+          path: `${Sports.Soccer}/:leagueCode/matchup/:teamMatchup`,
           element: <TeamMatchupScreen />,
         },
         {
@@ -57,7 +39,7 @@ const InnerRouter = () => {
   const element = useRoutes(routes);
   return (
     <div>
-      <Suspense fallback={<Loading />}>{element}</Suspense>
+      <Suspense fallback={<LoadingSpinner />}>{element}</Suspense>
     </div>
   );
 };
