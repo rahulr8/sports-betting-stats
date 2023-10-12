@@ -13,12 +13,8 @@ import {
   Box,
   MenuList,
   MenuItem,
-  MenuDivider,
 } from "@chakra-ui/react";
 
-import { SignInButton } from "containers/SignInButton";
-import { useAuthState } from "contexts/UserContext";
-import SignOutButton from "containers/SignOutButton";
 import { SoccerLeagues } from "constants/leagues";
 
 interface MobileProps extends FlexProps {
@@ -26,7 +22,6 @@ interface MobileProps extends FlexProps {
 }
 
 export const MobileNav = ({ onOpen }: MobileProps) => {
-  const { state } = useAuthState();
   const { teamName } = useParams<{ teamName: string }>();
 
   const teamHistoryLink = (
@@ -80,13 +75,6 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
           <Menu>
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: "none" }}>
               <HStack>
-                <Box display={{ base: "none", md: "flex" }}>
-                  {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? (
-                    <SignInButton />
-                  ) : (
-                    <SignOutButton />
-                  )}
-                </Box>
                 <Box display={{ base: "flex", md: "none" }}>
                   <FiChevronDown />
                 </Box>
@@ -98,10 +86,6 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
             >
               <MenuItem>{teamHistoryLink}</MenuItem>
               <MenuItem>{matchupHistoryLink}</MenuItem>
-              <MenuDivider />
-              <MenuItem>
-                {state.state === "UNKNOWN" ? null : state.state === "SIGNED_OUT" ? <SignInButton /> : <SignOutButton />}
-              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>
