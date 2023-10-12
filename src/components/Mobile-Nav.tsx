@@ -24,8 +24,11 @@ interface MobileProps extends FlexProps {
 export const MobileNav = ({ onOpen }: MobileProps) => {
   const { teamName = "" } = useParams<{ teamName: string }>();
 
+  const leagueCode =
+    SoccerLeagues.find((league) => league.teams.find((team) => team.code === teamName))?.code || SoccerLeagues[0].code;
+
   const teamHistoryLink = (
-    <Link to={`soccer/team/${teamName || SoccerLeagues[0].teams[0].code}`}>
+    <Link to={`soccer/${leagueCode}/team/${teamName || SoccerLeagues[0].teams[0].code}`}>
       <Text mr={5} fontWeight={600} fontSize="large">
         Team history
       </Text>
@@ -33,7 +36,11 @@ export const MobileNav = ({ onOpen }: MobileProps) => {
   );
 
   const matchupHistoryLink = (
-    <Link to={`soccer/matchup/${teamName || SoccerLeagues[0].teams[0].code}-${SoccerLeagues[0].teams[1].code}`}>
+    <Link
+      to={`soccer/${leagueCode}/matchup/${teamName || SoccerLeagues[0].teams[0].code}-${
+        SoccerLeagues[0].teams[1].code
+      }`}
+    >
       <Text fontWeight={600} fontSize="large">
         Matchup history
       </Text>
