@@ -1,16 +1,6 @@
-export interface Team {
-  name: string;
-  code: string;
-}
+import { SoccerLeague } from "types/league";
 
-interface FootballLeague {
-  name: string;
-  teams: Team[];
-  enabled: boolean;
-  flagSVGcode: string;
-}
-
-export const SoccerLeagues: FootballLeague[] = [
+export const SoccerLeagues: SoccerLeague[] = [
   {
     name: "Premier League",
     teams: [

@@ -50,7 +50,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                   <h2>
                     <AccordionButton>
                       <Flex>
-                        <img src={`https://flagcdn.com/${league.flagSVGcode}.svg`} width="30" alt="England" />
+                        <img src={`https://flagcdn.com/${league.flagSVGcode}.svg`} width="30" alt="league-flag" />
                         <Text fontWeight={600} px={2}>
                           {league.name}
                         </Text>

@@ -20,7 +20,7 @@ const Sidebar = () => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* {/* mobilenav  */}
+
       <MobileNav onOpen={onOpen} />
     </Box>
   );

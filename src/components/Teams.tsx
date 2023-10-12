@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { Flex, Text } from "@chakra-ui/react";
 
-import { Team } from "constants/leagues";
+import { Team } from "types/team";
 
 export const Teams = ({ teams }: { teams: Team[] }) => {
   const { teamName } = useParams<{ teamName: string }>();
