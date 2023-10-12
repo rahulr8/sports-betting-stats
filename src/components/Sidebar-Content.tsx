@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Teams } from "./Teams";
-import { SoccerLeagues } from "constants/leagues";
+import { SoccerLeagues } from "constants/soccer/leagues";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;

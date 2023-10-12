@@ -1,8 +1,8 @@
 import { query, getDocs, where, collection, DocumentData } from "firebase/firestore";
 
-import { TeamCodeKey } from "constants/teams";
+import { TeamCodeKey } from "constants/soccer/teams";
 import { firestore } from "api/firebase";
-import { Match } from "types/match";
+import { Match } from "types/soccer/match";
 import { EnglandSoccerStats } from "./stats";
 
 /**

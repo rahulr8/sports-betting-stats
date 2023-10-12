@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchMatchesForTeam } from "api/team";
-import { TeamCode } from "constants/teams";
-import { Match } from "types/match";
+import { TeamCode } from "constants/soccer/teams";
+import { Match } from "types/soccer/match";
 
 const TeamHistory: React.FC = () => {
   const { teamName = "" } = useParams<{ teamName: string }>();

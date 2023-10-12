@@ -15,7 +15,7 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 
-import { SoccerLeagues } from "constants/leagues";
+import { SoccerLeagues } from "constants/soccer/leagues";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
