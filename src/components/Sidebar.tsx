@@ -1,6 +1,6 @@
 import { Box, useColorModeValue, Drawer, DrawerContent, useDisclosure } from "@chakra-ui/react";
 
-import { MobileNav } from "./Mobile-Nav";
+import { Nav } from "./Nav";
 import { SidebarContent } from "./Sidebar-Content";
 
 const Sidebar = () => {
@@ -21,7 +21,7 @@ const Sidebar = () => {
         </DrawerContent>
       </Drawer>
 
-      <MobileNav onOpen={onOpen} />
+      <Nav onOpen={onOpen} />
     </Box>
   );
 };
