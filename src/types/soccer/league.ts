@@ -1,9 +1,10 @@
-import { Team } from "./team";
+import { ITeam } from "../team";
 
 export interface SoccerLeague {
+  id: number;
   name: string;
   code: SoccerLeagueCode;
-  teams: Team[];
+  teams: ITeam[];
   enabled: boolean;
   flagSVGcode: string;
 }

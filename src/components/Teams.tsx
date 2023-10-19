@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { Flex, Text } from "@chakra-ui/react";
 
-import { Team } from "types/soccer/team";
-import { Sports } from "constants/common";
+import { ITeam } from "types/team";
+import { SportsNames } from "constants/common";
 import { SoccerLeagueCode } from "types/soccer/league";
 
 interface ITeamsProps {
-  teams: Team[];
+  teams: ITeam[];
   leagueCode: SoccerLeagueCode;
 }
 
@@ -17,7 +17,7 @@ export const Teams = ({ teams, leagueCode }: ITeamsProps) => {
     <Flex direction="column">
       {teams.map((team) => {
         return (
-          <Link key={team.name} to={`${Sports.Soccer}/${leagueCode}/team/${team.code}`}>
+          <Link key={team.name} to={`${SportsNames.Soccer}/${leagueCode}/team/${team.code}`}>
             <Flex
               bg={teamName === team.code ? "white" : "blue.300"}
               key={team.name}
