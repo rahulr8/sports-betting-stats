@@ -1,20 +1,11 @@
 import { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Collapse } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-import SportMenu from "./SportMenu";
-import LeagueMenu from "./LeagueMenu";
-import TeamList from "./TeamList";
 import { SoccerLeagues } from "constants/soccer/leagues";
-import { SoccerLeague } from "types/soccer/league";
-import { ITeam } from "types/team";
 
-interface ISport {
-  id: number;
-  name: string;
-  leagues: SoccerLeague[];
-}
-
-const sportsData: ISport[] = [
+const sportsData = [
   {
     id: 1,
     name: "Football",
@@ -23,28 +14,33 @@ const sportsData: ISport[] = [
 ];
 
 const Sidebar = () => {
-  const [selectedSport, setSelectedSport] = useState<number | null>(null);
+  const [selectedSport, setSelectedSport] = useState<number | null>(1);
   const [selectedLeague, setSelectedLeague] = useState<number | null>(null);
-
-  const handleSportSelect = (sportId: number) => {
-    setSelectedSport(sportId);
-    setSelectedLeague(null);
-  };
-
-  const handleLeagueSelect = (leagueId: number) => {
-    setSelectedLeague(leagueId);
-  };
-
-  const selectedSportData = sportsData.find((s) => s.id === selectedSport);
-  const leagues: SoccerLeague[] = selectedSportData?.leagues || [];
-  const selectedLeagueData = leagues.find((l) => l.id === selectedLeague);
-  const teams: ITeam[] = selectedLeagueData?.teams || [];
+  const navigate = useNavigate();
 
   return (
     <Box>
-      <SportMenu sports={sportsData} onSportSelect={handleSportSelect} />
-      {selectedSport && <LeagueMenu leagues={leagues} onLeagueSelect={handleLeagueSelect} />}
-      {selectedLeague && <TeamList teams={teams} />}
+      <Box onClick={() => setSelectedSport(selectedSport ? null : 1)}>
+        Sports {selectedSport ? <ChevronDownIcon /> : <ChevronRightIcon />}
+      </Box>
+      <Collapse in={!!selectedSport}>
+        <Box pl={4}>
+          {sportsData[0].leagues.map((league) => (
+            <Box key={league.id} mt={2}>
+              <Box onClick={() => setSelectedLeague(selectedLeague === league.id ? null : league.id)}>
+                {league.name} {selectedLeague === league.id ? <ChevronDownIcon /> : <ChevronRightIcon />}
+              </Box>
+              <Collapse in={selectedLeague === league.id} pl={4}>
+                {(sportsData[0].leagues.find((l) => l.id === league.id)?.teams || []).map((team) => (
+                  <Box key={team.id} mt={2} onClick={() => navigate(`/team/${team.id}`)}>
+                    {team.name}
+                  </Box>
+                ))}
+              </Collapse>
+            </Box>
+          ))}
+        </Box>
+      </Collapse>
     </Box>
   );
 };
