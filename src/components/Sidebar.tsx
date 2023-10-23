@@ -3,7 +3,7 @@ import { Box, Collapse } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 import { SoccerLeagues } from "constants/soccer/leagues";
-import TeamList from "./TeamList";
+import LeagueMenu from "./LeagueMenu";
 
 const sportsData = [
   {
@@ -19,21 +19,15 @@ const Sidebar = () => {
 
   return (
     <Box>
-      <Box onClick={() => setSelectedSport(selectedSport ? null : 1)}>
+      <Box onClick={() => setSelectedSport(selectedSport ? null : 1)} cursor="pointer">
         Sports {selectedSport ? <ChevronDownIcon /> : <ChevronRightIcon />}
       </Box>
       <Collapse in={!!selectedSport}>
         <Box pl={4}>
-          {sportsData[0].leagues.map((league) => (
-            <Box key={league.id} mt={2}>
-              <Box onClick={() => setSelectedLeague(selectedLeague === league.id ? null : league.id)}>
-                {league.name} {selectedLeague === league.id ? <ChevronDownIcon /> : <ChevronRightIcon />}
-              </Box>
-              <Collapse in={selectedLeague === league.id}>
-                <TeamList teams={sportsData[0].leagues.find((l) => l.id === league.id)?.teams || []} />
-              </Collapse>
-            </Box>
-          ))}
+          <LeagueMenu
+            leagues={sportsData[0].leagues}
+            onLeagueSelect={(leagueId) => setSelectedLeague(selectedLeague === leagueId ? null : leagueId)}
+          />
         </Box>
       </Collapse>
     </Box>
