@@ -1,4 +1,4 @@
-import { Box, VStack, Text } from "@chakra-ui/react";
+import { VStack, Text, Flex, Image } from "@chakra-ui/react";
 
 import { ITeam } from "types/team";
 
@@ -8,13 +8,14 @@ interface ITeamList {
 
 const TeamList = ({ teams }: ITeamList) => {
   return (
-    <VStack align="start" spacing={4}>
+    <VStack align="start" spacing={2}>
       {teams.map((team) => (
-        <Box key={team.id}>
-          <Text fontWeight="medium">
-            <img src={team.logoUrl} alt={`${team.name} logo`} width="30" /> {team.name}
+        <Flex key={team.id} align="center" width="100%" p={1}>
+          <Image src={team.logoUrl} alt={`${team.name} logo`} boxSize="24px" mr={2} />
+          <Text isTruncated fontWeight="medium" flex={1}>
+            {team.name}
           </Text>
-        </Box>
+        </Flex>
       ))}
     </VStack>
   );
