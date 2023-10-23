@@ -1,7 +1,7 @@
 import { ITeam } from "types/team";
 
 export const PremierLeagueTeams: ITeam[] = [
-  { id: 1, name: "Arsenal", code: "ars", logoUrl: "" },
+  { id: 1, name: "Arsenal", code: "ars", logoUrl: "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg" },
   { id: 2, name: "Aston Villa", code: "avl", logoUrl: "" },
   { id: 3, name: "Bournemouth", code: "bou", logoUrl: "" },
   { id: 4, name: "Brentford", code: "bre", logoUrl: "" },

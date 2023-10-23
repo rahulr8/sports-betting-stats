@@ -29,7 +29,7 @@ const Sidebar = () => {
               <Box onClick={() => setSelectedLeague(selectedLeague === league.id ? null : league.id)}>
                 {league.name} {selectedLeague === league.id ? <ChevronDownIcon /> : <ChevronRightIcon />}
               </Box>
-              <Collapse in={selectedLeague === league.id} pl={4}>
+              <Collapse in={selectedLeague === league.id}>
                 <TeamList teams={sportsData[0].leagues.find((l) => l.id === league.id)?.teams || []} />
               </Collapse>
             </Box>
