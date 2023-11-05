@@ -3,7 +3,7 @@ import { Box, VStack, Text, Icon, Collapse, HStack } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 import { ILeague } from "types/league";
-import { SoccerLeague } from "types/soccer/league";
+import { SoccerLeague, SoccerLeagueCode } from "types/soccer/league";
 import TeamList from "./TeamList";
 
 interface ILeagueMenu {
@@ -34,7 +34,7 @@ const LeagueMenu = ({ leagues, onLeagueSelect }: ILeagueMenu) => {
           </HStack>
           <Collapse in={selectedLeague === league.id} animateOpacity>
             <Box pl={4}>
-              <TeamList leagueCode={league.code} teams={league.teams} />
+              <TeamList leagueCode={league.code as SoccerLeagueCode} teams={league.teams} />
             </Box>
           </Collapse>
         </Box>

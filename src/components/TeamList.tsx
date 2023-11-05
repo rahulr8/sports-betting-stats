@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 import { SportsNames } from "constants/common";
 import { ITeam } from "types/team";
+import { SoccerLeagueCode } from "types/soccer/league";
 
 interface ITeamList {
-  leagueCode: string;
+  leagueCode: SoccerLeagueCode;
   teams: ITeam[];
 }
 
