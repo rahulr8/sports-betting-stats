@@ -4,6 +4,7 @@ import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 import { SoccerLeagues } from "constants/soccer/leagues";
 import LeagueMenu from "./LeagueMenu";
+import theme from "styles/theme";
 
 const sportsData = [
   {
@@ -18,7 +19,7 @@ const Sidebar = () => {
   const [selectedLeague, setSelectedLeague] = useState<number | null>(null);
 
   return (
-    <Box>
+    <Box position="fixed" top={theme.navHeight} left="0" w="240px" h="100vh" overflowY="auto" bg="blue.800">
       <Box onClick={() => setSelectedSport(selectedSport ? null : 1)} cursor="pointer" p={4} borderBottomWidth="1px">
         Sports {selectedSport ? <ChevronDownIcon /> : <ChevronRightIcon />}
       </Box>

@@ -23,6 +23,7 @@ const theme = extendTheme({
       },
     },
   },
+  navHeight: "20",
 });
 
 export default theme;

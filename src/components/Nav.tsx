@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 import { SoccerLeagues } from "constants/soccer/leagues";
+import theme from "styles/theme";
 
 interface NavProps {
   onOpen: () => void;
@@ -53,7 +54,7 @@ export const Nav = ({ onOpen }: NavProps) => {
       zIndex="sticky"
       left="0"
       right="0"
-      height="20"
+      height={theme.navHeight}
       px={{ base: 4, md: 4 }}
       ml={{ base: 0, md: "240px" }} // Adjust the value to match your sidebar's width
       alignItems="center"
