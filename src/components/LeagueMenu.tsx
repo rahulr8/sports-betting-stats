@@ -34,7 +34,7 @@ const LeagueMenu = ({ leagues, onLeagueSelect }: ILeagueMenu) => {
           </HStack>
           <Collapse in={selectedLeague === league.id} animateOpacity>
             <Box pl={4}>
-              <TeamList teams={league.teams} />
+              <TeamList leagueCode={league.code} teams={league.teams} />
             </Box>
           </Collapse>
         </Box>

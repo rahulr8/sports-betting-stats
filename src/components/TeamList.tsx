@@ -1,12 +1,15 @@
-import { VStack, Text, Flex, Image, LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { VStack, Text, Flex, Image, LinkBox } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
+import { SportsNames } from "constants/common";
 import { ITeam } from "types/team";
 
 interface ITeamList {
+  leagueCode: string;
   teams: ITeam[];
 }
 
-const TeamList = ({ teams }: ITeamList) => {
+const TeamList = ({ leagueCode, teams }: ITeamList) => {
   return (
     <VStack align="start" spacing={2}>
       {teams.map((team) => (
@@ -22,7 +25,7 @@ const TeamList = ({ teams }: ITeamList) => {
         >
           <Image src={team.logoUrl} alt={`${team.name} logo`} boxSize="24px" mr={2} />
           <Text isTruncated fontWeight="medium" flex={1}>
-            <LinkOverlay href={`/team/${team.id}`}>{team.name}</LinkOverlay>
+            <Link to={`/${SportsNames.Soccer}/${leagueCode}/team/${team.code}`}>{team.name}</Link>
           </Text>
         </LinkBox>
       ))}
