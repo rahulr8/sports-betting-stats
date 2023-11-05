@@ -19,11 +19,11 @@ const Sidebar = () => {
 
   return (
     <Box>
-      <Box onClick={() => setSelectedSport(selectedSport ? null : 1)} cursor="pointer">
+      <Box onClick={() => setSelectedSport(selectedSport ? null : 1)} cursor="pointer" p={4} borderBottomWidth="1px">
         Sports {selectedSport ? <ChevronDownIcon /> : <ChevronRightIcon />}
       </Box>
-      <Collapse in={!!selectedSport}>
-        <Box pl={4}>
+      <Collapse in={!!selectedSport} animateOpacity>
+        <Box pl={6}>
           <LeagueMenu
             leagues={sportsData[0].leagues}
             onLeagueSelect={(leagueId) => setSelectedLeague(selectedLeague === leagueId ? null : leagueId)}
