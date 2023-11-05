@@ -1,27 +1,36 @@
-import { Box, useColorModeValue, Drawer, DrawerContent, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
+import { Box, Collapse } from "@chakra-ui/react";
+import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-import { Nav } from "./Nav";
-import { SidebarContent } from "./Sidebar-Content";
+import { SoccerLeagues } from "constants/soccer/leagues";
+import LeagueMenu from "./LeagueMenu";
+import theme from "styles/theme";
+
+const sportsData = [
+  {
+    id: 1,
+    name: "Football",
+    leagues: SoccerLeagues,
+  },
+];
 
 const Sidebar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  return (
-    <Box w="full" bg={useColorModeValue("gray.100", "gray.900")}>
-      <SidebarContent onClose={() => onClose} display={{ base: "none", md: "block" }} />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
+  const [selectedSport, setSelectedSport] = useState<number | null>(1);
+  const [selectedLeague, setSelectedLeague] = useState<number | null>(null);
 
-      <Nav onOpen={onOpen} />
+  return (
+    <Box position="fixed" top={theme.navHeight} left="0" w="240px" h="100vh" overflowY="auto" bg="blue.800">
+      <Box onClick={() => setSelectedSport(selectedSport ? null : 1)} cursor="pointer" p={4} borderBottomWidth="1px">
+        Sports {selectedSport ? <ChevronDownIcon /> : <ChevronRightIcon />}
+      </Box>
+      <Collapse in={!!selectedSport} animateOpacity>
+        <Box pl={6}>
+          <LeagueMenu
+            leagues={sportsData[0].leagues}
+            onLeagueSelect={(leagueId) => setSelectedLeague(selectedLeague === leagueId ? null : leagueId)}
+          />
+        </Box>
+      </Collapse>
     </Box>
   );
 };

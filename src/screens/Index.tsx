@@ -5,7 +5,6 @@ function Index() {
     <Box>
       <h1>Home Page</h1>
       <Box>Premier League matchups</Box>
-      {/* list table too */}
     </Box>
   );
 }

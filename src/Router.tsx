@@ -3,7 +3,7 @@ import { RouteObject, useRoutes, BrowserRouter } from "react-router-dom";
 
 import BaseLayout from "layouts/Base";
 import LoadingSpinner from "components/Loading-Spinner";
-import { Sports } from "constants/common";
+import { SportsNames } from "constants/common";
 
 // Screens List
 const IndexScreen = lazy(() => import("screens/Index"));
@@ -22,11 +22,11 @@ const InnerRouter = () => {
           element: <IndexScreen />,
         },
         {
-          path: `${Sports.Soccer}/:leagueCode/team/:teamName`,
+          path: `${SportsNames.Soccer}/:leagueCode/team/:teamName`,
           element: <TeamHistoryScreen />,
         },
         {
-          path: `${Sports.Soccer}/:leagueCode/matchup/:teamMatchup`,
+          path: `${SportsNames.Soccer}/:leagueCode/matchup/:teamMatchup`,
           element: <TeamMatchupScreen />,
         },
         {
